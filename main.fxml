@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.isolo.GameController" stylesheets="@/styles/main.css">
+    
+    <!-- Main Menu -->
+    <VBox fx:id="mainMenu" spacing="20" alignment="CENTER">
+        <Label text="Isolo" style="-fx-text-fill: darkblue; -fx-font-size: 48px; -fx-font-weight: bold;"/>
+        <VBox spacing="10" alignment="CENTER">
+            <Button text="New Game" onAction="#showPlayerSetup" prefWidth="200"/>
+            <Button text="Load Game" onAction="#showLoadGame" prefWidth="200"/>
+            <Button text="How to Play" onAction="#showInstructionsDialog" prefWidth="200"/>
+            <Button text="Exit" onAction="#exitGame" prefWidth="200"/>
+        </VBox>
+    </VBox>
+    
+    <!-- Player Setup -->
+    <VBox fx:id="playerSetup" visible="false" spacing="20" alignment="CENTER">
+        <Label text="Enter Player Names" style="-fx-font-size: 24px;"/>
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Player 1:"/>
+            <TextField fx:id="player1Name" promptText="Player 1 Name"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Player 2:"/>
+            <TextField fx:id="player2Name" promptText="Player 2 Name"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Start Game" onAction="#startNewGame"/>
+            <Button text="Back" onAction="#backToMainMenu"/>
+        </HBox>
+    </VBox>
+    
+    <!-- Game Screen -->
+    <VBox fx:id="gameScreen" visible="false" spacing="10" style="-fx-padding: 10px;">
+        <HBox spacing="20" alignment="CENTER">
+            <Label fx:id="player1Label" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label fx:id="currentPlayerLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label fx:id="player2Label" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        </HBox>
+        <HBox spacing="20" alignment="CENTER">
+            <Label fx:id="player1Score" style="-fx-font-size: 14px;"/>
+            <Label fx:id="player2Score" style="-fx-font-size: 14px;"/>
+        </HBox>
+        
+        <GridPane fx:id="gameBoard" hgap="5" vgap="5" alignment="CENTER"/>
+        
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Save Game" onAction="#saveGame"/>
+            <Button text="Main Menu" onAction="#backToMainMenu"/>
+        </HBox>
+    </VBox>
+    
+    <!-- Load Game Screen -->
+    <VBox fx:id="loadGameScreen" visible="false" spacing="20" alignment="CENTER">
+        <Label text="Load Saved Game" style="-fx-font-size: 24px;"/>
+        <Label fx:id="noSavedGamesLabel" text="No saved games available." style="-fx-text-fill: red; -fx-font-size: 16px;" visible="false"/>
+        <ListView fx:id="savedGamesList" prefWidth="300" prefHeight="200"/>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Load Selected" onAction="#loadSelectedGame"/>
+            <Button text="Back" onAction="#backToMainMenu"/>
+        </HBox>
+    </VBox>
+    
+    <!-- Instructions Screen (Simple version) -->
+    <VBox fx:id="instructionsScreen" visible="false" spacing="20" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: white;">
+        <Label text="How to Play Isolo" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <Label text="Instructions loading..." style="-fx-font-size: 16px;"/>
+        <Button text="Back to Main Menu" onAction="#backToMainMenu"/>
+    </VBox>
+</VBox>
